@@ -1,5 +1,6 @@
-const CACHE='giostacchio-lavagna-standalone-v1';
-const CORE=['./','./index.html','./manifest.webmanifest','./icon.svg'];
+const CACHE='giostacchio-lavagna-standalone-v2';
+const APP='/Basket-playbook/lavagna/?v=0.3&standalone=1';
+const CORE=['./','./index.html','./manifest.webmanifest','./icon.svg',APP];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE&&k.startsWith('giostacchio-lavagna-standalone-')).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==self.location.origin)return;e.respondWith(fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return r}).catch(()=>caches.match(e.request).then(hit=>hit||caches.match('./index.html'))))});
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==self.location.origin)return;e.respondWith(fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return r}).catch(()=>caches.match(e.request).then(hit=>hit||caches.match(APP)||caches.match('./index.html'))))});
