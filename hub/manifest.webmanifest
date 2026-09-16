@@ -1,15 +1,17 @@
 {
-  "name": "GIOSTACCHIO Tools Hub",
-  "short_name": "GIOSTACCHIO",
-  "description": "Accesso rapido ai programmi e tool GIOSTACCHIO",
-  "start_url": "./",
-  "scope": "./",
+  "id": "/GIOSTACCHIO-lavagna/hub/",
+  "name": "GIOSTACCHIO HUB",
+  "short_name": "GIO HUB",
+  "description": "Centro unico per tutti i programmi e tool GIOSTACCHIO",
+  "start_url": "/GIOSTACCHIO-lavagna/hub/?pwa=hub",
+  "scope": "/GIOSTACCHIO-lavagna/hub/",
   "display": "standalone",
   "background_color": "#0b1020",
   "theme_color": "#0b1020",
+  "orientation": "any",
   "icons": [
     {
-      "src": "../icon.svg",
+      "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
